@@ -1,0 +1,8 @@
+FROM python:3.11.1-bullseye
+RUN pip install pip install pandas==1.5.2 pyarrow==10.0.1
+RUN mkdir /home/data
+
+COPY . /home
+WORKDIR /home
+
+CMD python /home/examples.py

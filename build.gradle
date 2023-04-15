@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.apache.hadoop:hadoop-common:3.3.4"
+    implementation "org.apache.hadoop:hadoop-mapreduce-client-core:3.3.4"
+    
+	implementation "org.apache.parquet:parquet-avro:1.12.3"
+	//Just for Avro reflection
+	implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-avro:2.14.2"
+	
+	implementation "org.apache.parquet:parquet-protobuf:1.12.3"
+	
+	implementation "com.jerolba:carpet-record:0.0.5"
+	
+	implementation "org.duckdb:duckdb_jdbc:0.7.1"
+}

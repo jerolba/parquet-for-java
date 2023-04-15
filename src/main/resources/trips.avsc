@@ -1,0 +1,19 @@
+{
+    "type": "record",
+    "name": "Trip",
+    "namespace": "com.jerolba.parquet.avro.model",
+    "fields": [{
+            "name": "dispatching_base_num",
+            "type": ["null", "string"]
+        }, {
+            "name": "request_datetime",
+            "type": ["null", "long"]
+        }, {
+            "name": "trip_miles",
+            "type": ["null", "double"]
+        }, {
+            "name": "trip_time",
+            "type": ["null", "long"]
+        }
+    ]
+}

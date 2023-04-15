@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package com.jerolba.parquet.protocol.model;
+
+option java_multiple_files = true;
+option java_package = "com.jerolba.parquet.protocol.model";
+option java_outer_classname = "Trips";
+
+message Trip {
+  required string dispatching_base_num = 1;
+  required int64 request_datetime = 2;
+  required double trip_miles = 3;
+  required int64 trip_time = 4;
+}
