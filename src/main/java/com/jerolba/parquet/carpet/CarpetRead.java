@@ -2,6 +2,7 @@ package com.jerolba.parquet.carpet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import com.jerolba.carpet.CarpetReader;
@@ -12,8 +13,10 @@ public class CarpetRead {
     }
 
     public static void main(String[] args) throws IOException {
-        var content = readFile("/tmp/fhvhv_tripdata_2022-01.parquet");
-        System.out.println(content.size() + " records");
+        for (int i = 0; i < 10; i++) {
+            var content = readFile("/tmp/fhvhv_tripdata_2022-01.parquet");
+            System.out.println(new Date() + ": " + content.size() + " records");
+        }
     }
 
     public static List<Trip> readFile(String filePath) throws IOException {

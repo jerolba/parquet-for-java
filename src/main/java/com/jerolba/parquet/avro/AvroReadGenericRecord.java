@@ -2,6 +2,7 @@ package com.jerolba.parquet.avro;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.avro.generic.GenericRecord;
@@ -22,8 +23,10 @@ public class AvroReadGenericRecord {
     public static void main(String[] args) throws IOException {
         Path path = new Path("/tmp/fhvhv_tripdata_2022-01.parquet");
         InputFile inputFile = HadoopInputFile.fromPath(path, new Configuration());
-        var content = readFile(inputFile);
-        System.out.println(content.size() + " records");
+        for (int i = 0; i < 10; i++) {
+            var content = readFile(inputFile);
+            System.out.println(new Date() + ": " + content.size() + " records");
+        }
     }
 
     public static List<Trip> readFile(InputFile inputFile) throws IOException {

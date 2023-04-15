@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DuckDbRead {
@@ -14,8 +15,10 @@ public class DuckDbRead {
     }
 
     public static void main(String[] args) throws Exception {
-        var content = readFile("/tmp/fhvhv_tripdata_2022-01.parquet");
-        System.out.println(content.size() + " records");
+        for (int i = 0; i < 10; i++) {
+            var content = readFile("/tmp/fhvhv_tripdata_2022-01.parquet");
+            System.out.println(new Date() + ": " + content.size() + " records");
+        }
     }
 
     public static List<Trip> readFile(String filePath) throws IOException, ClassNotFoundException, SQLException {
