@@ -23,19 +23,20 @@ public class DuckDbRead {
 
     public static List<Trip> readFile(String filePath) throws IOException, ClassNotFoundException, SQLException {
         Class.forName("org.duckdb.DuckDBDriver");
-        Connection conn = DriverManager.getConnection("jdbc:duckdb:");
         String sql = "select dispatching_base_num, trip_time, trip_miles, request_datetime from '" + filePath + "'";
-        var ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        List<Trip> result = new ArrayList<>();
-        while (rs.next()) {
-            String base = rs.getString("dispatching_base_num");
-            long tripTime = rs.getLong("trip_time");
-            double tripMiles = rs.getDouble("trip_miles");
-            long requestTime = rs.getLong("request_datetime");
-            result.add(new Trip(base, tripTime, tripMiles, requestTime));
+        try (Connection conn = DriverManager.getConnection("jdbc:duckdb:")) {
+            var ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Trip> result = new ArrayList<>();
+            while (rs.next()) {
+                String base = rs.getString("dispatching_base_num");
+                long tripTime = rs.getLong("trip_time");
+                double tripMiles = rs.getDouble("trip_miles");
+                long requestTime = rs.getLong("request_datetime");
+                result.add(new Trip(base, tripTime, tripMiles, requestTime));
+            }
+            return result;
         }
-        return result;
     }
 
 }

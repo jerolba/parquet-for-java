@@ -29,7 +29,7 @@ public class CarpetReadAndWrite {
     public static void writeFile(String filePath, List<Trip> data) throws IOException {
         FileOutputStream fos = new FileOutputStream(filePath);
         try (CarpetWriter<Trip> writer = new CarpetWriter.Builder<>(fos, Trip.class)
-                .withCompressionCodec(CompressionCodecName.GZIP)
+                .withCompressionCodec(CompressionCodecName.SNAPPY)
                 .build()) {
             writer.write(data);
         }
